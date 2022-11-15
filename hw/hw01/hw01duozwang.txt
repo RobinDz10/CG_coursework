@@ -1,0 +1,32 @@
+B581/Fall 2022		Homework 01		Duozhao Wang	duozwang
+
+Task B:
+1.
+Temperature scale A:
+freezing point Af: 0, bolling point Ab: 100
+Temperature scale B:
+freezing point Bf: -150, bolling point Bb: 300
+Convention formulas for A -> B: B = (9 / 2) * A
+Convention formulas for B -> A: A = (2 / 9) * B
+2.
+F(t) = 180 * t + 32
+C(t) = 100 * t
+
+
+Task C:
+1. Yes, I think we can use only triangles to build objects in computer graphics. Every polygon can be divided into triangles. If we need to 
+build an object with curved-surface, we only need to use more triangles to make the surface approximately smoothy.
+2. Now we have the two endpoints of the line segment and the rectangular window. If two endpoints are both inside this rectangular window area,
+ this means the line segment is clipped out by the rectangular window completely. If only one of the two endpoints is inside this rectangular 
+window, this means the line segment is clipped out by the rectangular window partially. If both of the two endpoints are outside this rectangular 
+window, there could be two possibility: We know that two endpoints can construct the explicit line function of this line, and we do know the four 
+line functions of each edge of the rectangular window. If the line segment is intersected with any one of the edge line of the rectangular window, 
+in this condition, the line segment is partially visible, otherwise the line is not clipped by the window (completely visible).
+
+
+Task D:
+a. The stage that precedes Primitive Assembly and Rasterization is called vertex shading stage. Vertex shading stage is used for vertex transformation, etc.
+   The stage that follows Primitive Assembly and Rasterization is called fragment shading stage. Fragment shading shage is used for fragment texturing 
+and coloring, etc.
+b. The primitives that get assembled in the Primitive Assembly stage are:
+   points, lines, polygon, etc.

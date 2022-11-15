@@ -1,0 +1,47 @@
+B581/Fall 2022		Homework 05			Duozhao Wang		duozwang
+
+
+Final Project Proposal
+
+
+Project name: Dominoes game
+
+
+Description: Playing dominoes in a given 3D scene.
+
+
+Details:
+Because my project will implement the functionalities listed in the requirement of the projection description, I will describe the role in 
+my project for each of the functionalities:
+
+1. 3D Scene:
+There are basically two objects: the ground, and the domino cubes.
+The ground can be a non-flat surface, for example, the ground can be a hill, so I can play dominoes on a hill.
+The ground will also be modeling in GPU, and all the domino cubes will be put on the surface of the ground.
+The domino cubes will be normal cubes. All the cubes will have the same size and same shape. Once playing, the cubes will fall down when 
+another domino cubes hit (interact) it.
+
+2. Interaction:
+For the interaction part, because there should be at least two 3D models in my scene should respoind to user interaction by mouse, I think 
+all the domino cubes can be controlled by mouse (for example, I can click on each of the domino cubes so that it will fall down without 
+interacting with another domino cube). The final result will depend on the way I solve it.
+
+3. Camera:
+For the camera part, I think I can provide several ways of camera controls.
+It could be a Zoom-in/Zoom-out camera, and a 360 degree camera around the scene. Both of them can be controlled by the user (mouse or keyboard).
+
+4. Illumination:
+For the illumination part, I'm considering to add a "sun" in the scene. The "sun" object wil be considered as a light source. All the cubes and 
+the ground will have different illumination effect while the "sun" within the scene. The "sun" object will be above the ground and all domino 
+cubes.
+Since the illumination effect can be implement in different ways, I think I need to talk to the course instructor with the implementation in order 
+to get best effects.
+
+5. Mapping:
+In order to have two different texture maps or bump maps, I'm now considering to implement two separate ground in the scene. Both of the ground 
+will have domino cubes on it, which means I can play domino game in two ground, but in the same scene.
+The other way I may consider is about doing different mapping type on each domino cube.
+
+6. Help screen:
+The "h" button will provide a list of instructions about how to control the start of each domino cube, and the camera.
+Hit "h" button, the instruction list will show in the scene. One more hit of "h" button, the instruction list will hide automatically.

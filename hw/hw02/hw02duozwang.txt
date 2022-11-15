@@ -1,0 +1,93 @@
+B581/Fall 2022		Homework 02		Duozhao Wang	duozwang
+
+
+
+Task B:
+1. Code for judging if three points in the same line.
+Return True: 3 points are in the same line
+Return False: 3 points are not in the same line
+
+In 2D plane:
+Algorithm Design: Let's assume there are 3 points, A(Xa, Ya), B(Xb, Yb), C(Xc, Yc).
+We know there will be one and only one line between two points, so first, we need to calculate the line function where both point A and point B 
+on. After we calculated this line function, we will judge if point C is on the line. If point C is on the line, we return True, otherwise we 
+will return False.
+
+Code:
+def isCollinear(Point A, Point B, Point C):
+   if (Xa == Xb and Ya == Yb) or (Xb == Xc and Yb == Yc) or (Xa == Xc and Ya == Yc):
+      # This means two of these three points are same points, return True
+      return True
+   # Three edges cases for slope calculation to avoid the divisor being zero
+   if Xa == Xb:
+      return Xc == Xa
+   if Xb == Xc:
+      return Xa == Xb
+   if Xc == Xa:
+      return Xb == Xa 
+   slope = (Yb - Ya) / (Xb - Xa)
+   intercept = Ya - slope * Xa
+   if slope * Xc + intercept == Yc:
+      return True
+   return False
+
+If comes to 3D plane:
+We can use the same strategy that we used in 2D plane. Since there are in total 3 points, we can say there will be one and only one 2D plane which all 
+these 3 points are all in. After we get the plane function of this 2D plane, we can reduce the 3D plane into 2D plane, and we can use the similar strategy 
+that we used for 2D plane to decide whether these 3 points can form a triangle or not.
+
+
+2. 
+Computer graphics API use scalars, vectors and points as their basic graphics primitives because they all have to do mathematical operation in 
+coordinate-free geometry, that's why we need to use scalars, vectors, and points as the basic primitives. However, standard graphics APIs do not rely on 
+coordinate-free system, therefore they don't have to provide such basic primitives.
+
+
+
+Task C:
+1. Y = mX + b. m is the slope of this line function, and b is the Y-intercept of this line function.
+
+2. Now we have the slope and Y-intercept of the line function. If we modify this equation to guarantee this line function pass through the point (X0, Y0), 
+The equation is now: m(X - X0) = (Y - Y0), where m is the slope of the line function, X0 and Y0 is the parameter(X0, Y0).
+
+
+
+Task D:
+1. 
+a. 
+Rotation by -30 degree counterclockwise:
+[ cos30°,	sin30°,	0
+  -sin30°, 	cos30°, 	0
+  0,		0,		1 ]
+
+b.
+Step 1: Translation by (2, 1):
+[ 1,  0,  2/w
+  0,  1,  1/w
+  0,  0,  1   ]
+Step 2: Scaling by (1, 2):
+[ 1,  0,  0
+  0,  2,  0
+  0,  0,  1 ]
+Step 3: Rotation by 45 degree counterclockwise:
+[ cos45°,	-sin45°,	0
+  sin45°, 	cos45°, 	0
+  0,		0,		1 ]
+
+
+2. 
+The total sequence should be:
+T(-X0, -Y0) -> S(0.25, 0.3) -> R(-60°) -> T(X0, Y0)
+
+
+Task E:
+1. The normalized normal vector should be: n = (-(y2 - y1), (x2 - x1))
+2. So now we have the coordinates of P1 (X1, Y1), P2 (X2, Y2) and P0 (Px, Py). We can say we have to vectors, one from P1 to P2 (named U), and one from P1 to P0 
+(named V), therefore we can calculate the angle φ between these two vectors by using cos(φ) = (u ⋅ v) / |u||v|. After we get the angle φ, if φ = 90° or φ = -90°, 
+the distance l will be 0 (perpendicular). Otherwise we will calculate the distance l by using l = ((Py - Y1) ^ 2 + (Px - X1) ^ 2) ^ 0.5 * abs(cos(φ)) to get the 
+signed distance.
+3. So now we have the coordinates of P1 (X1, Y1), P2 (X2, Y2) and P0 (Px, Py). We can say we have to vectors, one from P1 to P2 (named U), and one from P1 to P0 
+(named V), therefore we can calculate the angle φ between these two vectors by using cos(φ) = (u ⋅ v) / |u||v|. After we get the angle φ, if cos(φ) = 1 or 
+cos(φ) = -1, that means the test point is on the subject line, the distance h will be 0. Otherwise, we will calculate the distance h by using 
+h = ((Py - Y1) ^ 2 + (Px - X1) ^ 2) ^ 0.5 * sin(φ). If h < 0, that means P0 is on the right side of the line. If h > 0, it means P0 is on the left side of the line.
+If h = 0, it means P0 is on the line.

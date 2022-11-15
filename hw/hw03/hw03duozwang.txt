@@ -1,0 +1,86 @@
+B581/Fall 2022	Homework 03		Duozhao Wang	duozwang
+
+
+Task B: Splines
+
+1.
+It should be 12 independent constant parameters in a single-segment 3D Cubic spline equation.
+According to the spline function: P(t) = (1-t)^3 * P0 + t(1-t)^2 * P1 + (1-t)t^2 * P2 + t^3 * P3, we need 4 points in this equation.
+Each of the points contains their own x, y, and z. Therefore it should be 3 * 4 = 12 independent constant parameters.
+
+
+2.
+a. 
+The highest derivative that is matched automatically at the vertex 2 in the sequence should be the 2nd derivative.
+
+b.
+The two segment spline could be contiguous, or not. It depends on how we numbered these vertices in the segments.
+If we want the two segments to be contiguous, the last vertice of the first segment should be labeled as the same number of the first vertice of the second segment.
+For example, when all the four vertices of the first segment are numbered as 0, 1, 2, 3. Thus the four vertices of the second segment should be numbered as 3, 4, 5, 6.
+The highest derivative that is matched automatically between two contiguous segments should be the 2nd derivative.
+
+c.
+The two segment spline could be contiguous, or not. It depends on how we numbered these vertices in the segments.
+If we want the two segments to be contiguous, it should follow the same way as we used in building Bezier cubic lines. Just like this, in the first segment, all the 
+four vertices are numbered as 0, 1, 2, 3. So, in the second segment, if we want to make them contiguous, we have to number the four vertices as 3, 4, 5, 6.
+The highest derivative that is matched automatically between two contiguous segments should be the 1st derivative.
+
+
+3.
+P(t) = pow((1 - t), 2) * P0 + 2t(1 - t) * P1 + pow(t, 2) * P2
+
+
+Task C: Clipping
+
+1. Line Clipping - Intersection Calculation (Cyrus-Beck Algorithm)
+The four vertices of the clipping rectangular region are:
+Top-left: (50, 130), Bottom-left: (50, 10), Top-right: (200, 130), Bottom-right: (200, 10)
+The coordinates of the vertices which the subject line through are: (0, 0), (250, 150)
+Let's say line1 is the line which goes through Top-left and Bottom-left vertices of the rectangular region, line2 goes through Top-left 
+and Top-right vertices, line3 goes through Top-right and Bottom-right vertices, line 4 goes through Bottom-right and Bottom-left vertices. 
+After calculation by using Cyrus-Beck Algorithm:
+The intersection point between the subject line and line1 is: (50, 30).
+The intersection point between the subject line and line2 is: (650/3, 130).
+The intersection point between the subject line and line3 is: (200, 120).
+The intersection point between the subject line and line4 is: (50/3, 10).
+
+
+2. Line Clipping - Endpoint Coding (Cohen-Sutherland Algorithm)
+a. 
+The coordinates of the four vertices of the given rectangular region are:
+Top-left: (50, 130), Bottom-left: (50, 10), Top-right: (200, 130), Bottom-right: (200, 10)
+And the coordinates of A: (79. 0), B: (240, 200), C: (40, 40)
+Therefore, the region code for A: FFFT(0001), B: FTTF(0110), C: TFFF(1000)
+
+b.
+pair A: 1001, 0101
+It means the start point is to the left and bottom of the clip rectangle, but the end point is not a valid code.
+From left to right, the first digit of the code means whether the point is to the left of the window, the second digit of the code means 
+whether the point is above the window, the third digit of the code means whether the point is to the right of the window, and the fourth 
+digit of the code means whether the point is below the window. Therefore, 0101 means the point is both above the window and below the 
+window. It is impossible, therefore 0101 is not a valid code.
+
+pair B: 1001, 0010
+It means the start point is to the left and bottom of the clip rectangle, and the end point is to the right of the clip rectangle.
+The line could be completely visible, or partially visible, depend whether this line has intersections with the bottom edge and the right 
+edge of the clip rectangle. 
+
+pair C: 0000, 0000
+It means both the start point and the end point of this line segment are within the clip rectangle.
+Therefore, this line is completely invisible.
+
+pair D: 0110, 1010
+It means the start point is to the right and above the clip rectangle, but the end point is not a valid code.
+According to the statement in pair A, the end point will be both to the left of the window and to the right of the window. Since it is 
+totally impossible, the code 1010 is not a valid code.
+
+pair E: 0001, 0000
+It means the start point is right under the window, and the end point is within the clip window.
+Therefore, this line is partially visible.
+
+
+3. Polygon Clipping
+All the vertices of the polygon that has been clipped by the rectangular window:
+(100, 50), (100, 100), (145, 130), (200, 130), (200, 50)
+All the vertices of the new polygon after clipped by the rectangular window:
+(145, 130), (250, 200), (250, 50), (200, 50), (200, 130)
